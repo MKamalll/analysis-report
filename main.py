@@ -4,31 +4,27 @@ import statsmodels as sm
 import scipy
 import matplotlib.pyplot as plt
 import pymc as pm
+
+# import functions from other files
 from dataset_loader import load_data
 from cvss_categoriser import add_cvss_category
+from cvss_categoriser import cvss_statistics
+from cvss_categoriser import cvss_show
+
+from vendors_parser import vendors_statistics
+from vendors_parser import vendors_show
+
+from cwe_parser import cwes_statistics
+from cwe_parser import cwes_show
 
 # functions
-def printCVE():
+def printCVE(cve):
     """Display basic CVE information."""
     print("Files are loaded")
     #print(cve.head())
     print(cve.info())
     #print(cve.describe())
     #print(cve.shape)
-
-# Function to categorize CVSS scores
-def categorize_cvss(score):
-    if score >= 9.0:
-        return 'Critical'
-    elif 7.0 <= score < 9.0:
-        return 'High'
-    elif 4.0 <= score < 7.0:
-        return 'Medium'
-    elif 1.0 <= score < 4.0:
-        return 'Low'
-    else:
-        return 'None'
-
 
 # Main Function
 def main():
@@ -38,31 +34,32 @@ def main():
     # Load the data
     cve, products, vendor_product, vendors = load_data()
 
+    """ CVSS """
     # Categorize CVSS scores
     cve = add_cvss_category(cve)
 
     # CVSS Statistics
-    cvss_counts = cve['cvss_category'].value_counts().reset_index(name='Count')
-    cvss_counts.columns = ['CVSS Category', 'Count']
+    cvss_counts= cvss_statistics(cve)
 
-    # Display results
-    print(cvss_counts)
-
-    # Bar chart visualization
-    plt.figure(figsize=(8, 5))
-    plt.bar(cvss_counts['CVSS Category'], cvss_counts['Count'], 
-            color=['red', 'orange', 'yellow', 'green', 'gray'])
-
-    plt.title('CVSS Score Distribution')
-    plt.xlabel('CVSS Category')
-    plt.ylabel('Number of CVEs')
-    plt.show()
+    #cvss_show(cvss_counts)
+    """ CVSS End """
 
     # Print CVE details
-    printCVE(cve)
+    printCVE(vendors)
 
-    # Cleanup
-    del cve, products, vendor_product, vendors
+
+    """ Vendors Statistics """
+    #vendors_count = vendors_statistics(vendors)
+
+    #vendors_show(vendors_count)
+
+    """ cwes Statistics """
+    cwes_count = cwes_statistics(cve)
+
+    cwes_show(cwes_count)
+
+    """cleanup""" 
+    del cve, products, vendor_product, vendors, cvss_counts
 
 # Entry Point
 if __name__ == "__main__":
