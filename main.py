@@ -1,32 +1,22 @@
 import pandas as pd
 import numpy as np
-import statsmodels as sm
+import statsmodels.api as sm  # Correct import for statsmodels
 import scipy
 import matplotlib.pyplot as plt
 import pymc as pm
 
-# import functions from other files
+# Import functions from other files
 from dataset_loader import load_data
-from cvss_categoriser import add_cvss_category
-from cvss_categoriser import cvss_statistics
-from cvss_categoriser import cvss_show
+from cvss_categoriser import add_cvss_category, cvss_statistics, cvss_show
+from vendors_parser import vendors_statistics, vendors_show
+from cwe_parser import cwes_statistics, cwes_show
+from cve_parser import count_cves_per_year, cves_show,attack_vector_parse,impact_parse
 
-from vendors_parser import vendors_statistics
-from vendors_parser import vendors_show
-
-from cwe_parser import cwes_statistics
-from cwe_parser import cwes_show
-
-# functions
-def printCVE(cve):
+def print_cve_info(cve):
     """Display basic CVE information."""
     print("Files are loaded")
-    #print(cve.head())
     print(cve.info())
-    #print(cve.describe())
-    #print(cve.shape)
 
-# Main Function
 def main():
     """Main execution function."""
     print("Analysis and Reporting Module")
@@ -34,31 +24,33 @@ def main():
     # Load the data
     cve, products, vendor_product, vendors = load_data()
 
-    """ CVSS """
-    # Categorize CVSS scores
+    # CVSS Analysis
     cve = add_cvss_category(cve)
-
-    # CVSS Statistics
-    cvss_counts= cvss_statistics(cve)
-
-    #cvss_show(cvss_counts)
-    """ CVSS End """
+    cvss_counts = cvss_statistics(cve)
+    # cvss_show(cvss_counts)
 
     # Print CVE details
-    printCVE(vendors)
+    print_cve_info(vendors)
 
+    # Vendors Analysis
+    # vendors_count = vendors_statistics(vendors)
+    # vendors_show(vendors_count)
 
-    """ Vendors Statistics """
-    #vendors_count = vendors_statistics(vendors)
-
-    #vendors_show(vendors_count)
-
-    """ cwes Statistics """
+    # CWE Analysis
     cwes_count = cwes_statistics(cve)
+    # cwes_show(cwes_count)
 
-    cwes_show(cwes_count)
+    # CVEs per Year
+    cves_per_year = count_cves_per_year(cve)
+    cves_show(cves_per_year)
 
-    """cleanup""" 
+    # Attack Vector Statistics
+    attack_vector_parse(cve)
+
+    # Impact Statistics
+    impact_parse(cve)
+    
+    # Cleanup
     del cve, products, vendor_product, vendors, cvss_counts
 
 # Entry Point
