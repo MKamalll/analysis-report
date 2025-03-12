@@ -1,4 +1,24 @@
-# Dataset Overview
+
+# **CVE Analysis and Reporting System**
+
+## **Introduction**
+The CVE Analysis and Reporting System is designed to analyze cybersecurity vulnerability data by parsing, visualizing, and reporting key insights. This system leverages the CVSS scoring framework, CWE classifications, and data-driven analysis to identify trends, categorize security weaknesses, and support vulnerability management decisions.
+
+This project was developed to improve vulnerability insights by analyzing CVE data efficiently, visualizing trends, and categorizing security risks for better decision-making. By leveraging data science tools such as Pandas and Matplotlib, the system effectively identifies patterns in vulnerability data.
+
+---
+
+## **Project Objectives**
+The primary objectives of this project are to:
+- Load and clean CVE data efficiently.
+- Categorize CVEs using the CVSS scoring system.
+- Extract insights into CWE trends and vulnerability patterns.
+- Visualize attack vectors, confidentiality impacts, and vendor distribution.
+- Provide actionable insights by visualizing CVEs reported over time.
+
+---
+
+## **Dataset Overview**
 
 This dataset contains detailed information about security vulnerabilities, including metadata, impact, and access information. Below is a description of the dataset's columns:
 
@@ -33,87 +53,39 @@ This dataset contains detailed information about security vulnerabilities, inclu
 - **`impact_confidentiality`**: Impact on the system’s confidentiality if exploited.
 - **`impact_integrity`**: Impact on the system’s integrity if exploited.
 
-## Notes
-- The dataset contains **89660** entries.
-- Some columns have a slightly lower count (e.g., `access_authentication`, `access_complexity`, etc.), indicating missing values.
-
-This dataset is ideal for vulnerability detection, patching analysis, and security impact assessments.
-
-
-# **CVE Analysis and Reporting System**
+---
 
 ## **Project Structure**
 
-# Project Structure
-
-- `/analysis-report`
-  - `main.py` - Main application logic
-  - `data_loader.py` - CSV file loader
-  - `cvss_categorizer.py` - CVSS categorization logic
-  - `/archive`
-    - `cve.csv` - CVE data
-    - `products.csv` - Product information
-    - `vendor_product.csv` - Vendor-product mapping
-    - `vendors.csv` - Vendor details
-
-## **Description of Project Components**
-
-### **1. `main.py`**
-> **The main entry point of the application.**  
-- Contains the `main()` function that orchestrates the entire analysis workflow.
-- Imports functions from `data_loader.py` and `cvss_categorizer.py`.
-- Handles:
-  - Data loading
-  - CVSS categorization
-  - Visualization of results
-  - Reporting
-- Includes a `printCVE()` function to display key dataset insights such as:
-  - Dataset information
-  - Column details
-  - Sample records
-
----
-
-### **2. `data_loader.py`**
-> **Handles dataset loading and preparation.**  
-- Defines the `load_data()` function, which loads:
-  - **`cve.csv`**: Contains vulnerability data with CVSS scores.
-  - **`products.csv`**: Contains product-related information.
-  - **`vendor_product.csv`**: Links vendors to their products.
-  - **`vendors.csv`**: Contains vendor details.
-- Ensures proper data loading to prevent file path errors.
-
----
-
-### **3. `cvss_categorizer.py`**
-> **Responsible for CVSS score categorization.**  
-- Defines the `categorize_cvss()` function to classify CVSS scores into:
-  - **Critical** (≥ 9.0)
-  - **High** (7.0 – 8.9)
-  - **Medium** (4.0 – 6.9)
-  - **Low** (1.0 – 3.9)
-  - **None** (< 1.0)
-- Provides the `add_cvss_category()` function, which applies this classification to the CVE dataset.
-
----
-
-### **4. `/archive/` (Data Directory)**
-> **Contains the CSV data files used in the analysis.**
-
-- **`cve.csv`**: Main dataset with CVSS scores, vulnerability details, and impact data.
-- **`products.csv`**: Contains information on affected software and hardware.
-- **`vendor_product.csv`**: Establishes relationships between vendors and their products.
-- **`vendors.csv`**: Details about the vendors providing the affected products.
+- **`main.py`** - Main application logic that coordinates data loading, analysis, and reporting.
+- **`dataset_loader.py`** - Loads and prepares CVE data from CSV files.
+- **`cvss_categoriser.py`** - Categorizes CVEs based on CVSS scoring criteria.
+- **`cwe_parser.py`** - Parses CWE codes for trend analysis.
+- **`cve_parser.py`** - Tracks CVEs per year to understand reporting trends.
+- **`vendors_parser.py`** - Analyzes vendor-specific data for vulnerability tracking.
+- **`/archive`** - Contains CSV files such as:
+  - `cve.csv` - CVE data entries.
+  - `products.csv` - Product details.
+  - `vendor_product.csv` - Vendor-product mapping.
+  - `vendors.csv` - Vendor information.
 
 ---
 
 ## **How to Run the Project**
-1. Clone the repository or create the folder structure as shown.
-2. Install the required dependencies by running:
+1. Clone the repository and navigate to the project folder:
+   ```bash
+   git clone https://github.com/your-repository
+   cd analysis-report
+   ```
+
+2. Install the required dependencies:
    ```bash
    pip install pandas matplotlib numpy statsmodels scipy pymc
-    ```
-3. Run the main.py file:
+   ```
+
+3. Run the main application:
    ```bash
    python main.py
    ```
+
+4. The analysis results, including visualizations and insights, will be saved in the `/figures` directory.
