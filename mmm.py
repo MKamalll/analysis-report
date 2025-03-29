@@ -48,23 +48,15 @@ def main():
     print(f"Interquartile Range (IQR) of CVSS Scores: {iqr}")
 
     # Box Plot for CVSS Scores with IQR
-    plt.figure(figsize=(8, 6))
-    plt.boxplot(cve['cvss'], vert=False, patch_artist=True, boxprops=dict(facecolor='lightblue'))
-
-    # Add labels and title
-    plt.title('Interquartile Range (IQR) of CVSS Scores')
-    plt.xlabel('CVSS Score')
-
-    # Annotate IQR on the plot
-    plt.axvline(q1, color='orange', linestyle='--', label=f'Q1 = {q1:.2f}')
-    plt.axvline(q3, color='green', linestyle='--', label=f'Q3 = {q3:.2f}')
-    plt.axvline(median_value, color='red', linestyle='-', label=f'Median = {median_value:.2f}')
-    plt.legend()
+    # boxplot (just plotting cvss distribution)
+    plt.figure(figsize=(6, 6))
+    cve.boxplot(column='cvss')
+    plt.title('Boxplot of CVSS Scores')
+    plt.ylabel('CVSS Score')
     plt.tight_layout()
 
     # Save the plot to file
-    plt.savefig('./figures/IQR.png', dpi=300)  # You can change filename and dpi as needed
-
+    plt.savefig('./figures/IQR.png', dpi=300)
     plt.show()
 
     # Cleanup

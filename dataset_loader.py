@@ -7,7 +7,10 @@ def load_data():
     cve_cleaned = cleanup(cve)
     products = pd.read_csv('./archive/products.csv')
     vendor_product = pd.read_csv('./archive/vendor_product.csv')
-    vendors = pd.read_csv('./archive/vendors.csv')    
+    vendors = pd.read_csv('./archive/vendors.csv')  
+
+    # print the cve table info before processing the cvss values
+    print(vendors.info())  
     return cve_cleaned, products, vendor_product, vendors
 
 
@@ -49,7 +52,5 @@ def cleanup(cve):
     after_dedup = len(cve_cleaned)
     duplicates_removed = before_dedup - after_dedup
     print(f"Duplicate CVE entries removed: {duplicates_removed}")
-
-
 
     return cve_cleaned
