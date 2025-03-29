@@ -1,4 +1,3 @@
-
 # **CVE Analysis and Reporting System**
 
 ## **Introduction**
@@ -71,21 +70,37 @@ This dataset contains detailed information about security vulnerabilities, inclu
 
 ---
 
-## **How to Run the Project**
-1. Clone the repository and navigate to the project folder:
-   ```bash
-   git clone https://github.com/your-repository
-   cd analysis-report
-   ```
+## **Data Cleaning Process**
 
-2. Install the required dependencies:
-   ```bash
-   pip install pandas matplotlib numpy statsmodels scipy pymc
-   ```
+Prior to analysis, the raw CSV files undergo a cleaning phase to ensure consistency and accuracy. This includes:
+- Removing rows with missing or null values in critical columns (e.g., `cvss`, `cwe_code`, `summary`).
+- Ensuring all CVE entries are unique by verifying the `Unnamed: 0` or CVE ID field.
+- Cleaning auxiliary files (`products.csv`, `vendor_product.csv`, `vendors.csv`) by dropping rows with missing values in essential fields like `vendor`, `product`, and `vulnerable_product`.
 
-3. Run the main application:
-   ```bash
-   python main.py
-   ```
+This ensures the resulting dataset is reliable and suitable for statistical analysis and visualization.
 
-4. The analysis results, including visualizations and insights, will be saved in the `/figures` directory.
+---
+
+## **Technologies Used**
+
+- **Python 3.x** — Core programming language used for data processing.
+- **Pandas** — Data manipulation and cleaning.
+- **Matplotlib** — Data visualization.
+- **NumPy** — Numerical computations.
+- **Statsmodels** — Statistical modeling (if applicable).
+- **SciPy** — Scientific computations.
+- **PyMC** — Bayesian statistical modeling (if applicable).
+- **Visual Studio Code** — Main development environment.
+- **Jupyter Notebook** — Used for exploratory data analysis and prototyping.
+- **Git** — Version control.
+- **GitHub** — Code hosting and collaboration.
+
+---
+
+## **GitHub Repository**
+
+The complete source code, dataset references, analysis scripts, and documentation are hosted on GitHub.
+
+🔗 **Repository Link:** [https://github.com/your-repository](https://github.com/MKamalll/analysis-report)
+
+Please refer to the README and individual module docstrings for further instructions and usage examples.

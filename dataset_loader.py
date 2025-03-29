@@ -3,18 +3,19 @@ import pandas as pd
 def load_data():
 
     """Load and return CSV data files."""
-    cve = pd.read_csv('./archive/cve.csv')
-    cve_cleaned = cleanup(cve)
+    cve = pd.read_csv('./archive/cve.csv')  
     products = pd.read_csv('./archive/products.csv')
     vendor_product = pd.read_csv('./archive/vendor_product.csv')
     vendors = pd.read_csv('./archive/vendors.csv')  
 
+    cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned = cleanup(cve, products, vendor_product, vendors)
+
     # print the cve table info before processing the cvss values
     print(vendors.info())  
-    return cve_cleaned, products, vendor_product, vendors
+    return cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned
 
 
-def cleanup(cve):
+def cleanup(cve, products, vendor_product, vendors):
 
     # Define the columns to check for missing/empty values
     columns_to_check = [
@@ -53,4 +54,16 @@ def cleanup(cve):
     duplicates_removed = before_dedup - after_dedup
     print(f"Duplicate CVE entries removed: {duplicates_removed}")
 
-    return cve_cleaned
+    # Clean products DataFrame
+    products_cleaned = products.dropna(subset=['cve_id', 'vulnerable_product'])
+    print(f"Products - rows removed: {len(products) - len(products_cleaned)}")
+
+    # Clean vendor_product DataFrame
+    vendor_product_cleaned = vendor_product.dropna(subset=['vendor', 'product'])
+    print(f"Vendor_Product - rows removed: {len(vendor_product) - len(vendor_product_cleaned)}")
+
+    # Clean vendors DataFrame
+    vendors_cleaned = vendors.dropna(subset=['vendor'])
+    print(f"Vendors - rows removed: {len(vendors) - len(vendors_cleaned)}")
+
+    return cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned
