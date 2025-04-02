@@ -1,22 +1,28 @@
 import pandas as pd
+from cvss_categoriser import add_cvss_category
 
 def load_data():
 
-    """Load and return CSV data files."""
-    cve = pd.read_csv('./archive/cve.csv')  
-    products = pd.read_csv('./archive/products.csv')
-    vendor_product = pd.read_csv('./archive/vendor_product.csv')
-    vendors = pd.read_csv('./archive/vendors.csv')  
+    # Load and return CSV data files.
+    print(f"Load Dataset Function Call! ")
+    cve = pd.read_csv('./dataset/cve.csv')  
+    products = pd.read_csv('./dataset/products.csv')
+    vendor_product = pd.read_csv('./dataset/vendor_product.csv')
+    vendors = pd.read_csv('./dataset/vendors.csv')  
 
+    # Cleanup Function Call!
     cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned = cleanup(cve, products, vendor_product, vendors)
 
-    # print the cve table info before processing the cvss values
-    print(vendors.info())  
+    # CVSS categorisation # this will add a new column to the dataset to annotate the cvss score to a rating either Low, Medium, High, Critical
+    cve_cleaned = add_cvss_category(cve_cleaned)
+    
     return cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned
 
 
 def cleanup(cve, products, vendor_product, vendors):
 
+    print(f"Cleanup Function Call! ")
+    
     # Define the columns to check for missing/empty values
     columns_to_check = [
         'mod_date',
@@ -35,17 +41,16 @@ def cleanup(cve, products, vendor_product, vendors):
 
     # Report the number of rows before cleaning
     before_cleaning = len(cve)
-    print(f"Rows before cleaning: {before_cleaning}")
 
-    # Remove rows with missing (NaN) or empty ("") values in the specified columns
+    # Remove rows with missing (NaN) values in the specified columns
     cve_cleaned = cve.dropna(subset=columns_to_check)
 
     # Report the number of rows after cleaning
     after_cleaning = len(cve_cleaned)
     delta = before_cleaning - after_cleaning
 
-    print(f"Rows after cleaning: {after_cleaning}")
-    print(f"Rows removed (cleaned): {delta}")
+    #print(f"Rows after cleaning: {after_cleaning}")
+    print(f"CVEs - rows removed (cleaned): {delta}")
 
     # Remove duplicate CVE IDs
     before_dedup = len(cve_cleaned)
@@ -66,4 +71,7 @@ def cleanup(cve, products, vendor_product, vendors):
     vendors_cleaned = vendors.dropna(subset=['vendor'])
     print(f"Vendors - rows removed: {len(vendors) - len(vendors_cleaned)}")
 
+    # I want to print some blank space before entering the new feature
+    print("\n\n\n\n")
+          
     return cve_cleaned, products_cleaned, vendor_product_cleaned, vendors_cleaned

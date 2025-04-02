@@ -62,7 +62,7 @@ This dataset contains detailed information about security vulnerabilities, inclu
 - **`cwe_parser.py`** - Parses CWE codes for trend analysis.
 - **`cve_parser.py`** - Tracks CVEs per year to understand reporting trends.
 - **`vendors_parser.py`** - Analyzes vendor-specific data for vulnerability tracking.
-- **`/archive`** - Contains CSV files such as:
+- **`/dataset`** - Contains CSV files such as:
   - `cve.csv` - CVE data entries.
   - `products.csv` - Product details.
   - `vendor_product.csv` - Vendor-product mapping.

@@ -3,31 +3,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Import functions from other files
-from cvss_categoriser import add_cvss_category
 from dataset_loader import load_data
 
 
 
 def main():
-    """Main execution function."""
-    print("Analysis and Reporting Module")
+    # Main execution function
+    print("\n\n")
+    print("Analysis and Reporting Module\n")
+    print("    ----------------------     ")
 
     # Load the data
     cve, products, vendor_product, vendors = load_data()
 
-    # print the cve table info before processing the cvss values
-    print(cve.info())
+    # Debugging: print the cve table info before processing the cvss values
+    #print(cve.info())
 
-    # CVSS Analysis
-    cve = add_cvss_category(cve)
-
-    # Mohamed: Calculate Mode using pandas since stats does not support non numeric values
-    mode_value = cve['cvss_category'].mode().values[0]  # Extract the mode value
-    print(f"Mode of CVSS Category: {mode_value}")
+    print("Univariate Analysis \n")
+    print("    -------------------     ")
 
     # Calculate Median for CVSS Scores
     median_value = np.median(cve['cvss'])
     print(f"Median CVSS Score: {median_value}")
+
+    # Mohamed: Calculate Mode using pandas since stats does not support non numeric values
+    mode_value = cve['cvss_category'].mode().values[0]  # Extract the mode value
+    print(f"Mode of CVSS Category: {mode_value}")
 
     # Additional Statistical Analysis
 
@@ -46,7 +47,8 @@ def main():
     q3 = np.percentile(cve['cvss'], 75)
     iqr = q3 - q1
     print(f"Interquartile Range (IQR) of CVSS Scores: {iqr}")
-
+    print("\n\n")
+    
     # Box Plot for CVSS Scores with IQR
     # boxplot (just plotting cvss distribution)
     plt.figure(figsize=(6, 6))

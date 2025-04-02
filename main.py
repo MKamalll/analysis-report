@@ -25,12 +25,11 @@ def main():
     cve, products, vendor_product, vendors = load_data()
 
     # CVSS Analysis
-    cve = add_cvss_category(cve)
     cvss_counts = cvss_statistics(cve)
-    # cvss_show(cvss_counts)
+    cvss_show(cvss_counts)
 
     # Print CVE details
-    print_cve_info(vendors)
+    # print_cve_info(vendors)
 
     # Vendors Analysis
     # vendors_count = vendors_statistics(vendors)
@@ -41,14 +40,14 @@ def main():
     # cwes_show(cwes_count)
 
     # CVEs per Year
-    cves_per_year = count_cves_per_year(cve)
-    cves_show(cves_per_year)
+    # cves_per_year = count_cves_per_year(cve)
+    # cves_show(cves_per_year)
 
     # Attack Vector Statistics
-    attack_vector_parse(cve)
+    # attack_vector_parse(cve)
 
     # Impact Statistics
-    impact_parse(cve)
+    # impact_parse(cve)
     
     # Cleanup
     del cve, products, vendor_product, vendors, cvss_counts

@@ -17,10 +17,12 @@ def categorise_cvss(score):
 def add_cvss_category(cve_df):
     """Add the CVSS category column to the DataFrame."""
     cve_df['cvss_category'] = cve_df['cvss'].apply(categorise_cvss)
+    print(f" cvss_category Column has been added! ")
+    print("\n\n")
+
     return cve_df
 
 def cvss_statistics(cve_df):
-    """ """
     cvss_counts_df = cve_df['cvss_category'].value_counts().reset_index(name='Count')
     cvss_counts_df.columns = ['CVSS Category', 'Count']
 
@@ -32,8 +34,7 @@ def cvss_show(cvss_counts):
     """ draw the figure and save it in figures folder """
     """ Bar chart visualization """
     plt.figure(figsize=(8, 5))
-    plt.bar(cvss_counts['CVSS Category'], cvss_counts['Count'], 
-            color=['red', 'orange', 'yellow', 'green', 'gray'])
+    plt.pie(cvss_counts['Count'], labels=cvss_counts['CVSS Category'], autopct='%1.1f%%', startangle=140)
 
     plt.title('CVSS Score Distribution')
     plt.xlabel('CVSS Category')
