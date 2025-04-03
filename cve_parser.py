@@ -94,14 +94,14 @@ def cves_show(cves_per_year):
 # Draw the figure and save it in the 'figures' folder
     
     # Ensure only top 10 years are plotted
-    last_10_years_cves = cves_per_year.sort_values(by='year', ascending=True).tail(10)
+    cves_over_time = cves_per_year.sort_values(by='year', ascending=True).tail(21)
 
     plt.figure(figsize=(8, 5))
-    plt.plot(last_10_years_cves['year'].astype(str), 
-             last_10_years_cves['Count'], 
+    plt.plot(cves_over_time['year'].astype(str), 
+             cves_over_time['Count'], 
              linestyle='-', color='black')
 
-    plt.title('Top 5 Most Affected CWEs')
+    plt.title('CVEs Over Time')
     plt.xlabel('Years')
     plt.ylabel('Number of CVEs')
     plt.grid(axis='y', linestyle='--', alpha=0.5)  # Improved readability
@@ -109,7 +109,7 @@ def cves_show(cves_per_year):
 
     # Save the figure
     plt.tight_layout()
-    plt.savefig('./figures/last_10_years_cves.png', dpi=300, transparent=True)
+    plt.savefig('./figures/cves_over_time.png', dpi=300, transparent=True)
 
     # Display the chart
     plt.show()

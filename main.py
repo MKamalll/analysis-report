@@ -37,11 +37,11 @@ def main():
 
     # CWE Analysis
     cwes_count = cwes_statistics(cve)
-    # cwes_show(cwes_count)
+    cwes_show(cwes_count)
 
     # CVEs per Year
-    # cves_per_year = count_cves_per_year(cve)
-    # cves_show(cves_per_year)
+    cves_per_year = count_cves_per_year(cve)
+    cves_show(cves_per_year)
 
     # Attack Vector Statistics
     # attack_vector_parse(cve)
