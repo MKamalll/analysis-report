@@ -35,13 +35,13 @@ def cwes_show(cwes_count):
     cwe_labels = top_10_cwes['cwe_code'].astype(str).apply(lambda x: f"CWE-{x}")
     plt.bar(cwe_labels,
             top_10_cwes['Count'], 
-            color='darkgray')
+            color='darkblue')
 
-    plt.title('Top 5 Most Affected CWEs')
+    plt.title('Top 10 Most Affected CWEs')
     plt.xlabel('CWE Code')
     plt.ylabel('Number of CWEs')
-    plt.grid(axis='y', linestyle='--', alpha=0.5)  # Improved readability
-    plt.xticks(rotation=45, ha='right')  # Rotate labels for readability
+    plt.grid(axis='y', linestyle='--', alpha=0.5)
+    plt.xticks(rotation=45, ha='right')
 
     # Save the figure
     plt.tight_layout()

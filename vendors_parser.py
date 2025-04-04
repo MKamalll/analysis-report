@@ -13,17 +13,17 @@ def vendors_statistics(vendors):
 # Function to display vendor data
 def vendors_show(vendors_count):
     """ draw the figure and save it in figures folder """
-    """ Bar chart visualization """
-# Ensure only top 10 vendors are plotted
+    # Ensure only top 10 vendors are plotted
     top_10_vendors = vendors_count.nlargest(10, 'Count')
+    top_10_vendors = top_10_vendors.sort_values(by='Count')
 
     plt.figure(figsize=(8, 5))
-    plt.bar(top_10_vendors['vendor'], top_10_vendors['Count'], 
-            color=['red', 'orange', 'yellow', 'green', 'gray'])
+    plt.barh(top_10_vendors['vendor'], top_10_vendors['Count'], 
+             color=plt.cm.viridis_r(top_10_vendors['Count'] / top_10_vendors['Count'].max()))
 
     plt.title('Top 10 Most Affected Vendors')
-    plt.xlabel('Vendor')
-    plt.ylabel('Number of CVEs')
+    plt.xlabel('Number of CVEs')
+    plt.ylabel('Vendor')
     plt.xticks(rotation=45, ha='right')  # Rotate labels for readability
 
     # Save the figure
