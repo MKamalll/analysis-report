@@ -10,7 +10,11 @@ from dataset_loader import load_data
 from cvss_categoriser import add_cvss_category, cvss_statistics, cvss_show
 from vendors_parser import vendors_statistics, vendors_show
 from cwe_parser import cwes_statistics, cwes_show
-from cve_parser import count_cves_per_year, cves_show,attack_vector_parse,impact_parse,impact_parse_grouped,vulnerable_product_parser
+from cve_parser import count_cves_per_year, cves_show,impact_parse,impact_parse_grouped,vulnerable_product_parser
+from access_authentication import access_authentication_statistics
+from access_complexity import access_complexity_statistics
+from attack_vector import attack_vector_statistics
+
 
 def print_cve_info(cve):
     """Display basic CVE information."""
@@ -45,7 +49,16 @@ def main():
     cves_show(cves_per_year)
 
     # Attack Vector Statistics
-    attack_vector_parse(cve)
+    attack_vector_statistics(cve)
+
+    # Access Authentication Statistics
+    access_authentication_statistics(cve)	
+    
+    # Access Complexity Statistics
+    access_complexity_statistics(cve)
+
+    # Attack Vector Statistics
+    attack_vector_statistics(cve)
 
     # Impact Statistics
     impact_parse(cve)

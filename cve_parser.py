@@ -20,31 +20,6 @@ def count_cves_per_year(cve_data):
     print(cves_per_year)
     return cves_per_year
 
-# Function to parse different attack vectors
-def attack_vector_parse(cve_data):
-    # Parse and visualize the 'access_vector' data from CVE dataset.
-    
-    # Count the number of occurrences for each attack vector
-    attack_vector_count = cve_data['access_vector'].value_counts().reset_index()
-    attack_vector_count.columns = ['access_vector', 'Count']
-
-    # Display results
-    print(attack_vector_count)
-
-    # Plotting
-    plt.figure(figsize=(8, 5))
-    plt.pie(attack_vector_count['Count'], 
-            labels=attack_vector_count['access_vector'], autopct='%1.1f%%',
-            startangle=140)
-    plt.title('Attack Vector Distribution')
-
-    # Save and display the chart
-    plt.tight_layout()
-    plt.savefig('./figures/attack_vector.png', dpi=300, transparent=True)
-    plt.show()
-
-    return attack_vector_count
-
 # def fun Dynamically parse, count, and visualize impact data
 def impact_parse(cve_data):    
     # List of impact categories
