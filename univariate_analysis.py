@@ -14,7 +14,7 @@ def main():
     print("    ----------------------     ")
 
     # Load the data
-    cve, products, vendor_product, vendors = load_data()
+    cve, products, vendors = load_data()
 
     # Debugging: print the cve table info before processing the cvss values
     #print(cve.info())
@@ -62,7 +62,7 @@ def main():
     plt.show()
 
     # Cleanup
-    del cve, products, vendor_product, vendors
+    del cve, products, vendors
 
 # Entry Point
 if __name__ == "__main__":

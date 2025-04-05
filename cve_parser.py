@@ -68,13 +68,12 @@ def impact_parse(cve_data):
         print(impact_counts)
 
         # Plotting
-        colors = ['orange', 'lightblue', 'blue']
+        #colors = ['orange', 'lightblue', 'blue']
         plt.figure(figsize=(8, 5))
         plt.pie(impact_counts['Count'], 
                 labels=impact_counts[impact], 
                 autopct='%1.1f%%', 
-                startangle=140,
-                colors=colors)
+                startangle=140)
 
         plt.title(f'{impact} Impact Distribution')
         plt.grid(axis='y', linestyle='--', alpha=0.5)
@@ -101,8 +100,8 @@ def cves_show(cves_per_year):
     plt.title('CVEs Over Time')
     plt.xlabel('Years')
     plt.ylabel('Number of CVEs')
-    plt.grid(axis='y', linestyle='--', alpha=0.5)  # Improved readability
-    plt.xticks(rotation=45, ha='right')  # Rotate labels for readability
+    plt.grid(axis='y', linestyle='--', alpha=0.5)  
+    plt.xticks(rotation=45, ha='right')
 
     # Save the figure
     plt.tight_layout()
@@ -112,7 +111,7 @@ def cves_show(cves_per_year):
     plt.show()
 
 def impact_parse_grouped(cve_data):
-    """Draw a grouped bar chart comparing impact levels across dimensions."""
+    # Draw a grouped bar chart comparing impact levels across dimensions
 
     import numpy as np
 

@@ -55,7 +55,7 @@ def main():
     print(products.columns)
     vulnerable_product_parser(products)
     # Cleanup
-    del cve, products, vendor_product, vendors, cvss_counts
+    del cve, products, vendors, cvss_counts
 
 # Entry Point
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ import seaborn as sns
 from dataset_loader import load_data
 
 # Load the data
-cve, products, vendor_product, vendors = load_data()
+cve, products, vendors = load_data()
 
 # Ensure required columns exist before mapping
 required_columns = ['cvss', 'impact_availability', 'impact_confidentiality', 'impact_integrity']

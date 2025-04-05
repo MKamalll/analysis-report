@@ -97,6 +97,40 @@ This ensures the resulting dataset is reliable and suitable for statistical anal
 
 ---
 
+## **How to Run the Project**
+
+To run the CVE Analysis and Reporting System locally, follow these steps:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MKamalll/analysis-report.git
+   cd analysis-report
+   ```
+
+2. **Set up a virtual environment (optional)**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Prepare the dataset**
+   Ensure that the dataset CSV files (`cve.csv`, `products.csv`, `vendors.csv`, etc.) are placed inside the `/dataset` directory.
+
+5. **Run the analysis**
+   ```bash
+   python main.py
+   ```
+
+6. **View the outputs**
+   Generated figures and outputs will be saved to the `/figures` directory and can be reviewed for analysis and report inclusion.
+
+---
+
 ## **GitHub Repository**
 
 The complete source code, dataset references, analysis scripts, and documentation are hosted on GitHub.
