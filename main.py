@@ -1,9 +1,6 @@
 import pandas as pd
 import numpy as np
-import statsmodels.api as sm  # Correct import for statsmodels
-import scipy
 import matplotlib.pyplot as plt
-import pymc as pm
 
 # Import functions from other files
 from dataset_loader import load_data
@@ -14,7 +11,8 @@ from cve_parser import count_cves_per_year, cves_show,impact_parse,impact_parse_
 from access_authentication import access_authentication_statistics
 from access_complexity import access_complexity_statistics
 from attack_vector import attack_vector_statistics
-
+from univariate_analysis import univariate_analysis
+from bivariate_analysis import bivariate_analysis
 
 def print_cve_info(cve):
     """Display basic CVE information."""
@@ -67,6 +65,13 @@ def main():
     # vulnerable products
     print(products.columns)
     vulnerable_product_parser(products)
+
+    #univariate analysis
+    univariate_analysis(cve)
+
+    # Bivariate Analysis
+    bivariate_analysis(cve)
+
     # Cleanup
     del cve, products, vendors, cvss_counts
 

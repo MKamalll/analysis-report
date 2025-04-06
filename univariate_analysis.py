@@ -2,22 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Import functions from other files
-from dataset_loader import load_data
 
 
-
-def main():
-    # Main execution function
-    print("\n\n")
-    print("Analysis and Reporting Module\n")
-    print("    ----------------------     ")
-
-    # Load the data
-    cve, products, vendors = load_data()
-
-    # Debugging: print the cve table info before processing the cvss values
-    #print(cve.info())
+def univariate_analysis(cve):
 
     print("Univariate Analysis \n")
     print("    -------------------     ")
@@ -60,10 +47,3 @@ def main():
     # Save the plot to file
     plt.savefig('./figures/IQR.png', dpi=300)
     plt.show()
-
-    # Cleanup
-    del cve, products, vendors
-
-# Entry Point
-if __name__ == "__main__":
-    main()
