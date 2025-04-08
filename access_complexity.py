@@ -19,7 +19,7 @@ def access_complexity_statistics(cve):
 
     # Save and display the chart
     plt.tight_layout()
-    plt.savefig('./figures/access_complexity.png', dpi=300, transparent=True)
+    plt.savefig('./figures/access_complexity.png', dpi=600, transparent=True)
     plt.show()
 
     return access_complexity_count

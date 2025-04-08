@@ -13,15 +13,15 @@ def attack_vector_statistics(cve_data):
     print(attack_vector_count)
 
     # Plotting
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(10, 8))
     plt.pie(attack_vector_count['Count'], 
             labels=attack_vector_count['access_vector'], autopct='%1.1f%%',
-            startangle=140)
+            startangle=140, textprops={'fontsize': 12})
     plt.title('Attack Vector Distribution')
 
     # Save and display the chart
     plt.tight_layout()
-    plt.savefig('./figures/attack_vector.png', dpi=300, transparent=True)
+    plt.savefig('./figures/attack_vector.png', dpi=600, transparent=True)
     plt.show()
 
     return attack_vector_count

@@ -55,7 +55,7 @@ def impact_parse(cve_data):
 
         # Save and display the chart
         plt.tight_layout()
-        plt.savefig(f'./figures/{impact}_impact_distribution.png', dpi=300, transparent=True)
+        plt.savefig(f'./figures/{impact}_impact_distribution.png', dpi=600, transparent=True)
         plt.show()
 
     return impact_data
@@ -80,7 +80,7 @@ def cves_show(cves_per_year):
 
     # Save the figure
     plt.tight_layout()
-    plt.savefig('./figures/cves_over_time.png', dpi=300, transparent=True)
+    plt.savefig('./figures/cves_over_time.png', dpi=600, transparent=True)
 
     # Display the chart
     plt.show()
@@ -126,7 +126,7 @@ def impact_parse_grouped(cve_data):
     plt.xticks(x, df.index)
     plt.legend(title='Impact Type')
     plt.tight_layout()
-    plt.savefig('./figures/impact_level_distribution_grouped.png', dpi=300, transparent=True)
+    plt.savefig('./figures/impact_level_distribution_grouped.png', dpi=600, transparent=True)
     plt.show()
 
 
@@ -158,7 +158,7 @@ def vulnerable_product_parser_top3(products_data):
     plt.title('Top 3 Vulnerable Products Per Year')
     plt.legend(title='Product', bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
-    plt.savefig('./figures/top_3_vulnerable_products_per_year.png', dpi=300, transparent=True)
+    plt.savefig('./figures/top_3_vulnerable_products_per_year.png', dpi=600, transparent=True)
     plt.show()
 
     return top3_per_year
@@ -180,7 +180,7 @@ def vulnerable_product_parser(products_data):
     plt.title('Top 10 Most Affected Products')
     plt.gca().invert_yaxis()  # Highest value at the top
     plt.tight_layout()
-    plt.savefig('./figures/top_10_vulnerable_products.png', dpi=300, transparent=True)
+    plt.savefig('./figures/top_10_vulnerable_products.png', dpi=600, transparent=True)
     plt.show()
 
     return product_counts

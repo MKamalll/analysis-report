@@ -28,7 +28,7 @@ def vendors_show(vendors_count):
 
     # Save the figure
     plt.tight_layout()
-    plt.savefig('./figures/top_10_vendors.png', dpi=300, transparent=True)
+    plt.savefig('./figures/top_10_vendors.png', dpi=600, transparent=True)
 
     # Display the chart
     plt.show()

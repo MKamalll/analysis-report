@@ -40,5 +40,5 @@ def cvss_show(cvss_counts):
     plt.title('CVSS Score Distribution')
     plt.xlabel('CVSS Category')
     plt.ylabel('Number of CVEs')
-    plt.savefig('./figures/cvsscount.png',dpi=300,transparent=True)
+    plt.savefig('./figures/cvsscount.png',dpi=600,transparent=True)
     plt.show()

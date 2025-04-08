@@ -45,7 +45,7 @@ def cwes_show(cwes_count):
 
     # Save the figure
     plt.tight_layout()
-    plt.savefig('./figures/top_10_cwes.png', dpi=300, transparent=True)
+    plt.savefig('./figures/top_10_cwes.png', dpi=600, transparent=True)
 
     # Display the chart
     plt.show()

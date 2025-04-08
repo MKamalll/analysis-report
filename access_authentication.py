@@ -19,7 +19,7 @@ def access_authentication_statistics(cve):
 
     # Save and display the chart
     plt.tight_layout()
-    plt.savefig('./figures/access_authentication.png', dpi=300, transparent=True)
+    plt.savefig('./figures/access_authentication.png', dpi=600, transparent=True)
     plt.show()
 
     return access_authentication_count
