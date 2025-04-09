@@ -12,7 +12,7 @@ def vendors_statistics(vendors):
 
 # Function to display vendor data
 def vendors_show(vendors_count):
-    """ draw the figure and save it in figures folder """
+    #draw the figure and save it in figures folder
     # Ensure only top 10 vendors are plotted
     top_10_vendors = vendors_count.nlargest(10, 'Count')
     top_10_vendors = top_10_vendors.sort_values(by='Count')

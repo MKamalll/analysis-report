@@ -47,10 +47,10 @@ def univariate_analysis(cve):
     plt.text(1.5, median_value, f'Median: {median_value:.2f}', verticalalignment='center', color='green', fontsize=10)
 
     plt.axhline(y=q1, color='blue', linestyle=':')
-    plt.text(1.5, q1, f'Q1: {q1:.2f}', verticalalignment='center', color='blue', fontsize=10)
+    plt.text(1.5, q1, f'Q1: {q1:.2f}', verticalalignment='center', color='#0570b0', fontsize=10)
 
     plt.axhline(y=q3, color='blue', linestyle=':')
-    plt.text(1.5, q3, f'Q3: {q3:.2f}', verticalalignment='center', color='blue', fontsize=10)
+    plt.text(1.5, q3, f'Q3: {q3:.2f}', verticalalignment='center', color='#0570b0', fontsize=10)
 
     plt.text(1.0, (q1 + q3) / 2, f'IQR: {iqr:.2f}', verticalalignment='center', color='purple', fontsize=10)
 

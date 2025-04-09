@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 # Import functions from other files
 from dataset_loader import load_data
-from cvss_categoriser import add_cvss_category, cvss_statistics, cvss_show
+from cvss_categoriser import cvss_statistics, cvss_show
 from vendors_parser import vendors_statistics, vendors_show
 from cwe_parser import cwes_statistics, cwes_show
 from cve_parser import count_cves_per_year, cves_show,impact_parse,impact_parse_grouped,vulnerable_product_parser
@@ -23,7 +23,7 @@ def main():
     # Main execution function
     print("Analysis and Reporting Module")
     print("===================================\n")
-
+    print(" For consistency, I will be using #0570b0 as a color code for most of the charts \n")
     # Load the data and clean it
     cve, products, vendors = load_data()
 

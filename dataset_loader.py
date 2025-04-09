@@ -55,7 +55,7 @@ def cleanup(cve, products, vendors):
 
     # Remove duplicate CVE IDs
     before_dedup = len(cve_cleaned)
-    cve_cleaned = cve_cleaned.drop_duplicates(subset=cve_cleaned.columns[0])  # Assuming CVE ID is the first column
+    cve_cleaned = cve_cleaned.drop_duplicates(subset=cve_cleaned.columns[0])
     after_dedup = len(cve_cleaned)
     duplicates_removed = before_dedup - after_dedup
     

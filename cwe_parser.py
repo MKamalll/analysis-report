@@ -35,7 +35,7 @@ def cwes_show(cwes_count):
     cwe_labels = top_10_cwes['cwe_code'].astype(str).apply(lambda x: f"CWE-{x}")
     plt.bar(cwe_labels,
             top_10_cwes['Count'], 
-            color='darkblue')
+            color='#0570b0')
 
     plt.title('Top 10 Most Affected CWEs')
     plt.xlabel('CWE Code')

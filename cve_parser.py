@@ -29,7 +29,6 @@ def impact_parse(cve_data):
         'impact_availability'
     ]
 
-    # Dictionary to store parsed data
     impact_data = {}
 
     # Loop through each impact category
@@ -70,7 +69,7 @@ def cves_show(cves_per_year):
     plt.figure(figsize=(8, 5))
     plt.plot(cves_over_time['year'].astype(str), 
              cves_over_time['Count'], 
-             linestyle='-', color='darkblue')
+             linestyle='-', color='#0570b0')
 
     plt.title('CVEs Over Time')
     plt.xlabel('Years')
@@ -108,7 +107,7 @@ def impact_parse_grouped(cve_data):
 
     # Create a combined DataFrame
     df = pd.concat(impact_data, axis=1)
-    df.columns = df.columns.droplevel(1)  # Flatten multi-index
+    df.columns = df.columns.droplevel(1)
     df = df.reindex(['NONE', 'PARTIAL', 'COMPLETE'])
 
     # Bar plot setup
@@ -116,6 +115,9 @@ def impact_parse_grouped(cve_data):
     width = 0.25
 
     plt.figure(figsize=(10, 6))
+
+    # I will choose this color scheme for the bars #a6bddb , #3690c0 , #0570b0
+    # colors are grades of blue
     plt.bar(x - width, df['impact_confidentiality'], width, label='Confidentiality', color='#a6bddb')
     plt.bar(x, df['impact_integrity'], width, label='Integrity', color='#3690c0')
     plt.bar(x + width, df['impact_availability'], width, label='Availability', color='#0570b0')
@@ -130,40 +132,6 @@ def impact_parse_grouped(cve_data):
     plt.show()
 
 
-def vulnerable_product_parser_top3(products_data):
-    # Ensure column names are stripped and in lowercase
-    print(products_data.columns)
-    print(products_data.head(10)) 
-    products_data.columns = products_data.columns.str.strip().str.lower()
-    
-    # Extract year from CVE ID (e.g., 'CVE-2019-12345' → 2019)
-    products_data['year'] = products_data['cve_id'].str.extract(r'CVE-(\d{4})')[0].astype(int)
-
-    # Filter to include only the last 5 years
-    products_data = products_data[products_data['year'] >= (products_data['year'].max() - 4)]
-
-    # Count occurrences of each product per year
-    grouped = products_data.groupby(['year', 'vulnerable_product']).size().reset_index(name='Count')
-
-    # Get top 3 products per year
-    top3_per_year = grouped.groupby('year').apply(lambda x: x.nlargest(3, 'Count')).reset_index(drop=True)
-
-    # Pivot for plotting
-    pivot_df = top3_per_year.pivot(index='vulnerable_product', columns='year', values='Count').fillna(0)
-
-    # Plot
-    pivot_df.T.plot(kind='bar', figsize=(12, 6), width=0.7)
-    plt.xlabel('Year')
-    plt.ylabel('Number of Vulnerabilities')
-    plt.title('Top 3 Vulnerable Products Per Year')
-    plt.legend(title='Product', bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
-    plt.savefig('./figures/top_3_vulnerable_products_per_year.png', dpi=600, transparent=True)
-    plt.show()
-
-    return top3_per_year
-
-
 def vulnerable_product_parser(products_data):
     # Ensure column names are stripped and in lowercase
     products_data.columns = products_data.columns.str.strip().str.lower()
@@ -174,7 +142,7 @@ def vulnerable_product_parser(products_data):
 
     # Plot horizontal bar chart
     plt.figure(figsize=(10, 6))
-    plt.barh(product_counts['Product'], product_counts['CVE Count'], color='blue')
+    plt.barh(product_counts['Product'], product_counts['CVE Count'], color='#0570b0')
     plt.xlabel('Number of CVEs')
     plt.ylabel('Product')
     plt.title('Top 10 Most Affected Products')

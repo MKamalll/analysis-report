@@ -43,7 +43,7 @@ def bivariate_analysis(cve):
     # Plot scatter diagrams for each encoded feature vs cvss
     for col in encoded_df.columns:
         if col != 'cvss':
-            plt.scatter(encoded_df[col], encoded_df['cvss'])
+            plt.scatter(encoded_df[col], encoded_df['cvss'],color='#0570b0')
             plt.title(f'Scatter Diagram: CVSS Score vs {col}')
             plt.xlabel(f'{col}')
             plt.ylabel('CVSS Score')
