@@ -41,13 +41,16 @@ def impact_parse(cve_data):
         print(f"\n{impact} Impact Distribution:")
         print(impact_counts)
 
-        # Plotting
-        #colors = ['orange', 'lightblue', 'blue']
+        # draw the figure and save it in figures folder
+        # Define colors for the pie chart, I will be using the same colors as in the other figures
+        # navy blue, steel blue, light gray        
+        colors = ['#4D648D', '#9FB1BC', '#E6E6E6']
+
         plt.figure(figsize=(8, 5))
         plt.pie(impact_counts['Count'], 
                 labels=impact_counts[impact], 
                 autopct='%1.1f%%', 
-                startangle=140)
+                startangle=140, colors=colors)
 
         plt.title(f'{impact} Impact Distribution')
         plt.grid(axis='y', linestyle='--', alpha=0.5)
@@ -118,9 +121,9 @@ def impact_parse_grouped(cve_data):
 
     # I will choose this color scheme for the bars #a6bddb , #3690c0 , #0570b0
     # colors are grades of blue
-    plt.bar(x - width, df['impact_confidentiality'], width, label='Confidentiality', color='#a6bddb')
-    plt.bar(x, df['impact_integrity'], width, label='Integrity', color='#3690c0')
-    plt.bar(x + width, df['impact_availability'], width, label='Availability', color='#0570b0')
+    plt.bar(x - width, df['impact_confidentiality'], width, label='Confidentiality', color='#4D648D')
+    plt.bar(x, df['impact_integrity'], width, label='Integrity', color='#9FB1BC')
+    plt.bar(x + width, df['impact_availability'], width, label='Availability', color='#E6E6E6')
 
     plt.xlabel('Impact Level')
     plt.ylabel('Count')
@@ -142,7 +145,7 @@ def vulnerable_product_parser(products_data):
 
     # Plot horizontal bar chart
     plt.figure(figsize=(10, 6))
-    plt.barh(product_counts['Product'], product_counts['CVE Count'], color='#0570b0')
+    plt.barh(product_counts['Product'], product_counts['CVE Count'], color='#4D648D')
     plt.xlabel('Number of CVEs')
     plt.ylabel('Product')
     plt.title('Top 10 Most Affected Products')

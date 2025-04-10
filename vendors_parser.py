@@ -19,7 +19,7 @@ def vendors_show(vendors_count):
 
     plt.figure(figsize=(8, 5))
     plt.barh(top_10_vendors['vendor'], top_10_vendors['Count'], 
-             color=plt.cm.viridis_r(top_10_vendors['Count'] / top_10_vendors['Count'].max()))
+             color='#4D648D')
 
     plt.title('Top 10 Most Affected Vendors')
     plt.xlabel('Number of CVEs')

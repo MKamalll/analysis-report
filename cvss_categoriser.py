@@ -32,10 +32,12 @@ def cvss_statistics(cve_df):
 
 def cvss_show(cvss_counts):
     # draw the figure and save it in figures folder
-    #colors = ['orange', 'yellow', 'skyblue', 'blue']
+    # Define colors for the pie chart, I will be using the same colors as in the other figures
+    # navy blue, steel blue, light gray
+    colors = ['#4D648D', '#9FB1BC', '#E6E6E6', '#C1D3E0']
         
     plt.figure(figsize=(8, 5))
-    plt.pie(cvss_counts['Count'], labels=cvss_counts['CVSS Category'], autopct='%1.1f%%', startangle=140)
+    plt.pie(cvss_counts['Count'], labels=cvss_counts['CVSS Category'], autopct='%1.1f%%', startangle=140, colors=colors)
 
     plt.title('CVSS Score Distribution')
     plt.xlabel('CVSS Category')

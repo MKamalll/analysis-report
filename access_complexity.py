@@ -10,11 +10,16 @@ def access_complexity_statistics(cve):
     # Display results
     print(access_complexity_count)
 
+    # draw the figure and save it in figures folder
+    # Define colors for the pie chart, I will be using the same colors as in the other figures
+    # navy blue, steel blue, light gray
+    colors = ['#4D648D', '#9FB1BC', '#E6E6E6']
+
     # Plotting
     plt.figure(figsize=(8, 5))
     plt.pie(access_complexity_count['Count'], 
             labels=access_complexity_count['access_complexity'], autopct='%1.1f%%',
-            startangle=140)
+            startangle=140, colors=colors)
     plt.title('Access Complexity Distribution')
 
     # Save and display the chart
