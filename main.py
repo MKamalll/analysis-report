@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 from dataset_loader import load_data
 from cvss_categoriser import cvss_statistics, cvss_show
 from vendors_parser import vendors_statistics, vendors_show
-from cwe_parser import cwes_statistics, cwes_show
+from cwe_parser import cwes_statistics, cwes_show, plot_top_10_cwes_over_time
 from cve_parser import count_cves_per_year, cves_show,impact_parse,impact_parse_grouped,vulnerable_product_parser
 from access_authentication import access_authentication_statistics
 from access_complexity import access_complexity_statistics
 from attack_vector import attack_vector_statistics
 from univariate_analysis import univariate_analysis
 from bivariate_analysis import bivariate_analysis
-
+from predictive_analysis import predictive_analysis
 def print_cve_info(cve):
     """Display basic CVE information."""
     print("Files are loaded")
@@ -41,7 +41,8 @@ def main():
     # CWE Analysis
     cwes_count = cwes_statistics(cve)
     cwes_show(cwes_count)
-    
+    plot_top_10_cwes_over_time(cve)
+
     # CVEs per Year
     cves_per_year = count_cves_per_year(cve)
     cves_show(cves_per_year)
@@ -71,6 +72,9 @@ def main():
 
     # Bivariate Analysis
     bivariate_analysis(cve)
+
+    # Predictive Analysis
+    predictive_analysis(cve)
 
     # Cleanup
     del cve, products, vendors, cvss_counts

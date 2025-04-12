@@ -49,3 +49,24 @@ def cwes_show(cwes_count):
 
     # Display the chart
     plt.show()
+
+# Function to plot top 5 CWEs over time
+def plot_top_10_cwes_over_time(cve):
+    cve['year'] = pd.to_datetime(cve['pub_date']).dt.year
+    top_10_cwes = cve['cwe_code'].value_counts().nlargest(10).index.tolist()
+    top_10_data = cve[cve['cwe_code'].isin(top_10_cwes)]
+
+    cwe_yearly = top_10_data.groupby(['year', 'cwe_code']).size().unstack(fill_value=0)
+
+    plt.figure(figsize=(10, 6))
+    for cwe in cwe_yearly.columns:
+        plt.plot(cwe_yearly.index, cwe_yearly[cwe], label=f'CWE-{cwe}')
+    
+    plt.title('Top 10 Most Frequent CWEs Over Time')
+    plt.xlabel('Year')
+    plt.ylabel('Number of CVEs')
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+    plt.savefig('./figures/top_10_cwes_over_time.png', dpi=600, transparent=True)
+    plt.show()
